@@ -1,0 +1,36 @@
+---
+export interface MainVisualPropsType {
+  Element?: string;
+}
+
+const { Element = 'h1' } = Astro.props;
+
+// Styles
+import styles from '@components/structures/MainVisual/MainVisual.module.css';
+---
+
+<div class={styles.root}>
+  <Element class={styles.inner}>
+    {Astro.slots.MainVisualBadge  && (
+      <span class={styles.badge} id="mainVisualBadge"><slot name="MainVisualBadge" /></span>
+    )}
+
+    {Astro.slots.MainVisualTaglineTop  && (
+      <span class={styles.tagline} id="mainVisualTaglineTop"><slot name="MainVisualTaglineTop" /></span>
+    )}
+
+    {Astro.slots.MainVisualTitle  && (
+      <span class={styles.title} id="mainVisualTitle"><slot name="MainVisualTitle" /></span>
+    )}
+
+    {Astro.slots.MainVisualTaglineBottom  && (
+      <span class={styles.tagline} id="mainVisualTaglineBottom"><slot name="MainVisualTaglineBottom" /></span>
+    )}
+  </Element>
+
+  {Astro.slots.MainVisualMedia  && (
+    <div class={styles.media}>
+      <slot name="MainVisualMedia" />
+    </div>
+  )}
+</div>

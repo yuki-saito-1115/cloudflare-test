@@ -1,0 +1,39 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface ContainerPropType extends HTMLAttributes<'div'> {
+  theme?: 'dark' | 'light';
+  size?: 'full' | 'wide' | 'medium' | 'narrow';
+}
+
+const {
+  theme = 'light',
+  size = 'medium',
+  class: className,
+  ...rest
+} = Astro.props;
+
+// Styles
+import styles from '@components/structures/Container/Container.module.css';
+
+const classList = [styles.outer];
+
+if (theme) {
+  classList.push(styles[`theme-${theme}`]);
+}
+
+if (size) {
+  classList.push(styles[`theme-${size}`]);
+}
+
+const mergedClass = classList.join(' ');
+---
+<div
+  class="test"
+  class:list={[className, mergedClass]}
+  {...rest}
+>
+  <div class:list={[styles.inner]}>
+    <slot />
+  </div>
+</div>

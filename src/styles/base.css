@@ -1,0 +1,128 @@
+@font-face {
+  font-family: 'Noto Sans Japanese';
+  src: url('/assets/fonts/NotoSansJP-VariableFont_wght.woff2') format('woff2');
+  font-weight: 400 700; /* 400 = normal, 700 = bold */
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+html {
+  scroll-behavior: smooth;
+
+  &:has(dialog[open]) {
+    scrollbar-gutter: stable;
+  }
+}
+
+head {
+  :where(noscript) {
+    display: none;
+  }
+}
+
+body {
+  color: var(--COLOR_FOREGROUND_DARK);
+  font-family:
+    'Noto Sans Japanese', '游ゴシック Medium', '游ゴシック体',
+    'Yu Gothic Medium', YuGothic, 'ヒラギノ角ゴ ProN',
+    'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, sans-serif;
+  font-size: var(--FONT_SIZE);
+  line-height: var(--LINE_HEIGHT);
+
+  > :is(:first-child) {
+    margin-top: 0;
+  }
+
+  > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}
+
+em {
+  font-style: normal;
+  font-weight: var(--FONT_WEIGHT_BOLD);
+}
+
+strong {
+  color: var(--COLOR_ROLE_DANGER_DARK);
+}
+
+::placeholder {
+  opacity: 1;
+}
+
+label {
+  cursor: pointer;
+}
+
+[type='text'],
+[type='date'],
+[type='datetime-local'],
+[type='email'],
+[type='month'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='url'],
+[type='week'],
+select {
+  line-height: 1;
+}
+
+[type='text'],
+[type='date'],
+[type='datetime-local'],
+[type='email'],
+[type='month'],
+[type='number'],
+[type='password'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='url'],
+[type='week'],
+select,
+textarea {
+  border-radius: 0;
+  font-size: calc(16 / var(--FONT_SIZE_ROOT) * 1rem);
+}
+
+[type='date']::-webkit-inner-spin-button,
+[type='date']::-webkit-clear-button {
+  appearance: none;
+}
+
+[type='date']::-webkit-calendar-picker-indicator {
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}

@@ -1,0 +1,75 @@
+.root {
+  bottom: 0;
+  grid-area: navigationTop;
+  height: 0;
+  position: sticky;
+  z-index: 200;
+}
+
+/*
+.outer {
+}
+*/
+
+.inner {
+  display: flex;
+  grid-column: 2 / 3;
+  justify-content: flex-end;
+  padding: 16px;
+  pointer-events: none;
+  position: relative;
+  transform: translateY(-100%);
+
+  > :is(:first-child) {
+    margin-top: 0;
+  }
+
+  > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}
+
+.link {
+  background-color: var(--COLOR_BACKGROUND_LIGHT);
+  border: 1px solid var(--COLOR_BRAND_PRIMARY);
+  display: block;
+  height: 40px;
+  overflow: hidden;
+  padding: 40px 0 0 40px;
+  pointer-events: auto;
+  position: relative;
+  width: 40px;
+
+  /* arrow, icon */
+  &::before {
+    background-color: var(--COLOR_BRAND_PRIMARY);
+    content: '';
+    display: block;
+    height: 20px;
+    left: 50%;
+    mask-image: url('/assets/images/icon/angle-up.svg');
+    mask-repeat: no-repeat;
+    mask-size: cover;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+  }
+}
+
+/* PC Viewport */
+@media (width >= 768px) {
+  .link {
+    height: 48px;
+    padding: 48px 0 0 48px;
+    width: 48px;
+  }
+}
+
+@media (any-hover: hover) {
+  .link {
+    &:hover {
+      opacity: var(--OPACITY);
+    }
+  }
+}

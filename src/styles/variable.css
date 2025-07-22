@@ -1,0 +1,106 @@
+/*
+ * Custom properties
+ */
+:root {
+  /*
+   * Color Scheme
+   */
+
+  /* 基本となるカラー（ほとんどの場合変更不要） */
+  --COLOR_BASE_DARK: #000;
+  --COLOR_BASE_LIGHT: #fff;
+
+  /* このサイト固有の主要カラー */
+  --COLOR_BRAND_PRIMARY: #216aad;
+  --COLOR_BRAND_SECONDARY: #6610f2;
+  --COLOR_BRAND_SECONDARY_2: #4c4c5c;
+
+  /* 固有の意味を持つカラー */
+  --COLOR_ROLE_SUCCESS_DARK: #1c7560; /* 成功メッセージの前景色など */
+  --COLOR_ROLE_SUCCESS_LIGHT: #e2f8f3; /* 成功メッセージの背景色など */
+  --COLOR_ROLE_DANGER_DARK: #cc0033; /* エラーメッセージの前景色など */
+  --COLOR_ROLE_DANGER_LIGHT: #ffe0e8; /* エラーメッセージの背景色など */
+  --COLOR_ROLE_WARNING_DARK: #7a6800; /* 警告メッセージの前景色など */
+  --COLOR_ROLE_WARNING_LIGHT: #fff9d8; /* 警告メッセージの背景色など */
+  --COLOR_ROLE_INFO_DARK: #003acc; /* お知らせメッセージの前景色など */
+  --COLOR_ROLE_INFO_LIGHT: #e0e9ff; /* お知らせメッセージの背景色など */
+
+  /* 前景色として汎用的に使用するカラー */
+  --COLOR_FOREGROUND_DARK: #333;
+  --COLOR_FOREGROUND_LIGHT: #fff;
+
+  /* 背景色として汎用的に使用するカラー */
+  --COLOR_BACKGROUND_DARK: #333;
+  --COLOR_BACKGROUND_LIGHT: #fff;
+
+  /* 罫線色として汎用的に使用するカラー */
+  --COLOR_OUTLINE_DARK: #6e6e74;
+  --COLOR_OUTLINE_LIGHT: #d8d8db;
+
+  /*
+   * Size
+   */
+
+  /* 余白や高さの基準になるサイズ */
+  --SPACING: 4px;
+
+  /* ブレークポイント */
+  --MAJOR_BREAKPOINT: 768px;
+  --MINOR_BREAKPOINT: 1200px;
+
+  /* ウィンドウ幅がコンテンツ幅以下時の左右の余白 */
+  /*
+   * https://min-max-calculator.9elements.com/
+   * 16, 32, 768, 1200
+   */
+  --OUTSIDE_GUTTER_SP: calc(var(--SPACING) * 4);
+  --OUTSIDE_GUTTER_PC: calc(var(--SPACING) * 8);
+
+  /* コンテンツ幅 */
+  --CONTENT_WIDTH_SP: calc(375px - (var(--OUTSIDE_GUTTER_SP) * 2));
+  --CONTENT_WIDTH_PC: var(--MINOR_BREAKPOINT);
+
+  /* コンポーネント間マージンとして汎用的に使用するサイズ */
+  --SIZE_MODULE_MARGIN: calc(var(--SPACING) * 10);
+
+  /* コンポーネントを入れ子にしたときのコンポーネント間マージン */
+  --SIZE_NESTED_MODULE_MARGIN: calc(var(--SPACING) * 4);
+
+  /*
+   * Property
+   */
+
+  /* font-size */
+  --FONT_SIZE_ROOT: 16;
+  --FONT_SIZE: calc(14 / var(--FONT_SIZE_ROOT) * 1rem);
+
+  /* font-size (note) */
+  --FONT_SIZE_NOTE: calc(14 / var(--FONT_SIZE_ROOT) * 1rem);
+
+  /* font-weignt */
+  --FONT_WEIGHT_NORMAL: 400;
+  --FONT_WEIGHT_BOLD: 700;
+
+  /* line-height */
+  --LINE_HEIGHT: 1.75;
+
+  /* transition */
+  --TRANSITION: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* PC Viewport */
+@media (width >= 768px) {
+  :root {
+    /* モジュール間マージンとして汎用的に使用するサイズ */
+    --SIZE_MODULE_MARGIN: calc(var(--SPACING) * 16);
+    /* モジュールを入れ子にしたときのモジュール間マージン */
+    --SIZE_NESTED_MODULE_MARGIN: calc(var(--SPACING) * 6);
+
+    /* font-size */
+    --FONT_SIZE: calc(16 / var(--FONT_SIZE_ROOT) * 1rem);
+    /* font-size (note) */
+    --FONT_SIZE_NOTE: calc(14 / var(--FONT_SIZE_ROOT) * 1rem);
+    /* line-height */
+    --LINE_HEIGHT: 1.75;
+  }
+}

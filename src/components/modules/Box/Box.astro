@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface BoxPropType extends HTMLAttributes<'div' | 'details'> {
+  element?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div';
+  theme?: 'quote' | 'related' | 'important' | 'alert';
+  heading?: string;
+  scroll?: boolean;
+  disclosure?: boolean;
+}
+
+const {
+  element = 'div',
+  theme,
+  heading,
+  scroll = false,
+  disclosure = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Element = disclosure ? 'details' : element;
+const TitleElement = disclosure ? 'summary' : 'div';
+
+// Styles
+import styles from '@modules/Box/Box.module.css';
+
+const classList = [styles.root];
+
+if (theme) {
+  classList.push(styles[`theme-${theme}`]);
+}
+
+const mergedClass = classList.join(' ');
+---
+<Element
+  class:list={[className, mergedClass]}
+  {...rest}
+>
+  { heading && <TitleElement class:list={[styles.title]}>{heading}</TitleElement> }
+
+  <div class:list={[styles.content, scroll && styles['theme-scroll']]}>
+    <slot />
+  </div>
+</Element>

@@ -1,0 +1,114 @@
+---
+export interface PagePropsType {
+  language?: string;
+  siteName?: string;
+  title: string;
+  description?: string;
+  ogp?: OgpType;
+  breadcrumb?: BreadcrumbType;
+}
+
+interface OgpType {
+  locale?: string;
+  site_name?: string;
+  title?: string;
+  description?: string;
+  type?: string;
+  image?: string;
+  url?: string;
+}
+
+interface BreadcrumbType {
+  [key: string]: string | false;
+}
+
+const {
+  language = 'ja',
+  title = '',
+  description = '',
+  siteName = 'MLC Module Template',
+  ogp = {
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  breadcrumb = {
+    ホーム: '/',
+  },
+}: PagePropsType = Astro.props as PagePropsType;
+
+// Structure
+import Breadcrumb from '@components/structures/Breadcrumb/Breadcrumb.astro';
+import Footer from '@components/structures/Footer/Footer.astro';
+import Header from '@components/structures/Header/Header.astro';
+import NavigationTop from '@components/structures/NavigationTop/NavigationTop.astro';
+import Svg from '@components/structures/Svg/Svg.astro';
+import Wrap from '@components/structures/Wrap/Wrap.astro';
+
+// Styles
+import '@styles/variable.css';
+import '@styles/base.css';
+import '@styles/tailwind.css';
+import containerStyles from '@components/structures/Container/Container.module.css';
+---
+
+<!doctype html>
+<html lang={language}>
+  <head prefix="og: https://ogp.me/ns#">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="description" content={description} />
+
+    <title>{title !== '' && `${title} | `}{siteName}</title>
+
+    {ogp &&
+      <>
+        {ogp.locale && <meta property="og:locale" content={ogp.locale} />}
+        {ogp.site_name && <meta property="og:site_name" content={ogp.site_name} />}
+        {ogp.title && <meta property="og:title" content={ogp.title} />}
+        {ogp.description && <meta property="og:description" content={ogp.description} />}
+        {ogp.type && <meta property="og:type" content={ogp.type} />}
+        {ogp.image && <meta property="og:image" content={ogp.image} />}
+        {ogp.url && <meta property="og:url" content={ogp.url} />}
+      </>
+    }
+
+    {Astro.slots.uniqueStyle && (
+      <slot name="uniqueStyle" />
+    )}
+
+    {Astro.slots.uniqueScript && (
+      <slot name="uniqueScript" />
+    )}
+
+    {Astro.slots.uniqueAttach && (
+      <slot name="uniqueAttach" />
+    )}
+
+    <!-- Google Tag Manager -->
+    <script is:inline>
+    </script>
+  </head>
+
+  <body>
+    <!-- Google Tag Manager -->
+    <script is:inline>
+    </script>
+
+    <Wrap>
+      <Header />
+
+      <Breadcrumb {...breadcrumb} />
+
+      <main class={containerStyles.root}>
+        <slot />
+      </main>
+
+      <NavigationTop />
+
+      <Footer />
+    </Wrap>
+
+    <Svg />
+  </body>
+</html>

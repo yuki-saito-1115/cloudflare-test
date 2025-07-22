@@ -1,0 +1,40 @@
+.root {
+  border-bottom: 1px solid var(--COLOR_OUTLINE_DARK);
+  display: grid;
+  /*
+    * https://min-max-calculator.9elements.com/
+    * 16, 40, 375, 1220
+    */
+  gap: 0 clamp(1rem, 0.334rem + 2.84vw, 2.5rem);
+  grid-area: header;
+  grid-template-columns: 1fr minmax(
+      var(--CONTENT_WIDTH_SP),
+      var(--CONTENT_WIDTH_PC)
+    ) 1fr;
+}
+
+.outer {
+  display: grid;
+  /*
+   * https://min-max-calculator.9elements.com/
+   * 16, 40, 375, 1220
+   */
+  gap: 0 clamp(1rem, 0.334rem + 2.84vw, 2.5rem);
+  grid-column: 1 / 4;
+  grid-template-columns: 1fr minmax(
+      var(--CONTENT_WIDTH_SP),
+      var(--CONTENT_WIDTH_PC)
+    ) 1fr;
+}
+
+.inner {
+  grid-column: 2 / 3;
+
+  > :is(:first-child) {
+    margin-top: 0;
+  }
+
+  > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}

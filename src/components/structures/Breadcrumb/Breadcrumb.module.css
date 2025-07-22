@@ -1,0 +1,73 @@
+.root {
+  display: grid;
+  /*
+   * https://min-max-calculator.9elements.com/
+   * 16, 40, 375, 1220
+   */
+  gap: 0 clamp(1rem, 0.334rem + 2.84vw, 2.5rem);
+  grid-area: breadcrumb;
+  grid-template-columns: 1fr minmax(
+      var(--CONTENT_WIDTH_SP),
+      var(--CONTENT_WIDTH_PC)
+    ) 1fr;
+}
+
+.outer {
+  display: grid;
+  /*
+   * https://min-max-calculator.9elements.com/
+   * 16, 40, 375, 1220
+   */
+  gap: 0 clamp(1rem, 0.334rem + 2.84vw, 2.5rem);
+  grid-column: 1 / 4;
+  grid-template-columns: 1fr minmax(
+      var(--CONTENT_WIDTH_SP),
+      var(--CONTENT_WIDTH_PC)
+    ) 1fr;
+}
+
+.inner {
+  grid-column: 2 / 3;
+  padding: 16px 0;
+}
+
+.item {
+  display: inline;
+  font-size: calc(12 / var(--FONT_SIZE_ROOT) * 1rem);
+  list-style: none;
+
+  /* separator */
+  &::before {
+    content: '>';
+  }
+
+  &:first-child {
+    &::before {
+      content: none;
+    }
+  }
+}
+
+.link {
+  &:any-link {
+    color: var(--COLOR_BRAND_PRIMARY);
+    text-decoration: none;
+  }
+}
+
+/* PC Viewport */
+@media (width >= 768px) {
+  .item {
+    font-size: calc(14 / var(--FONT_SIZE_ROOT) * 1rem);
+  }
+}
+
+@media (any-hover: hover) {
+  .link {
+    &:any-link {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

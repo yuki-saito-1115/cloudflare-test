@@ -1,0 +1,48 @@
+{
+  "name": "xia",
+  "version": "0.0.10",
+  "description": "X-Tech Intelligent Assemble",
+  "license": "MIT",
+  "author": "Mitsue-Links Co., Ltd. (X-Tech Division)",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.mitsue.com/sdn/sandbox/saito-yuuki/xia.git"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "check": "astro check",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "biome check",
+    "fix": "biome check --write",
+    "prepare": "git config core.hooksPath .hooks && git lfs install"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^4.3.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "astro": "^5.11.1",
+    "tailwindcss": "^4.1.11",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/ts-plugin": "^1.10.4",
+    "@biomejs/biome": "2.1.1",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^24.0.14",
+    "mdast-util-directive": "^3.1.0",
+    "remark-directive": "^4.0.0",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "npm@10.9.2",
+  "engines": {
+    "node": "22.17.0",
+    "npm": "10.9.2"
+  },
+  "volta": {
+    "node": "22.17.0",
+    "npm": "10.9.2"
+  }
+}

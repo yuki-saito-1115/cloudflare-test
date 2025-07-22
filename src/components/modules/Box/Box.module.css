@@ -1,0 +1,133 @@
+.root {
+  --local-foreground: var(--COLOR_FOREGROUND_DARK);
+  --local-background: #e8e8eb;
+  --local-outline: transparent;
+
+  background-color: var(--local-background);
+  border: 1px solid var(--local-outline);
+  margin-top: calc(var(--SPACING) * 6);
+
+  &.theme-quote {
+    --local-background: var(--COLOR_BACKGROUND_LIGHT);
+    --local-outline: var(--COLOR_OUTLINE_DARK);
+  }
+
+  &.theme-related {
+    --local-background: var(--COLOR_BACKGROUND_LIGHT);
+    --local-outline: var(--COLOR_OUTLINE_DARK);
+
+    :where(.title) {
+      background-color: #e8e8eb;
+    }
+
+    :is(.title + .content) {
+      padding-bottom: calc(var(--SPACING) * 6);
+      padding-top: calc(var(--SPACING) * 6);
+    }
+  }
+
+  &.theme-important {
+    --local-background: var(--COLOR_ROLE_DANGER_LIGHT);
+    --local-outline: transparent;
+  }
+
+  &.theme-alert {
+    --local-foreground: var(--COLOR_ROLE_DANGER_DARK);
+    --local-background: var(--COLOR_BACKGROUND_LIGHT);
+    --local-outline: var(--COLOR_ROLE_DANGER_DARK);
+
+    text-align: center;
+  }
+}
+
+details.root {
+  :where(.title) {
+    cursor: pointer;
+    list-style: none;
+    padding-right: calc(16px + var(--SPACING) * 8); /* アイコン + 余白 */
+    position: relative;
+
+    /* icon */
+    &::before {
+      background-color: currentColor;
+      content: '';
+      display: block;
+      height: 16px;
+      mask-image: url('/assets/images/icon/plus.svg');
+      mask-repeat: no-repeat;
+      mask-size: cover;
+      pointer-events: none;
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+    }
+  }
+
+  &[open] {
+    :where(.title) {
+      /* icon */
+      &::before {
+        mask-image: url('/assets/images/icon/minus.svg');
+      }
+    }
+  }
+}
+
+.title {
+  color: var(--local-foreground);
+  font-size: calc(18 / var(--FONT_SIZE_ROOT) * 1rem);
+  font-weight: var(--FONT_WEIGHT_BOLD);
+  line-height: 1.5;
+  padding: calc(var(--SPACING) * 6) calc(var(--SPACING) * 4);
+}
+
+.content {
+  padding: calc(var(--SPACING) * 6) calc(var(--SPACING) * 4);
+
+  &.theme-scroll {
+    height: 200px;
+    overflow: auto;
+    position: relative;
+  }
+
+  > :is(:first-child) {
+    margin-top: 0;
+  }
+
+  > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}
+
+.title + .content {
+  padding-top: 0;
+}
+
+/* PC Viewport */
+@media (width >= 768px) {
+  .root {
+    margin-top: calc(var(--SPACING) * 10);
+  }
+
+  details.root {
+    :where(.title) {
+      padding-right: calc(16px + var(--SPACING) * 16); /* アイコン + 余白 */
+
+      /* icon */
+      &::before {
+        right: 32px;
+      }
+    }
+  }
+
+  .title {
+    font-size: calc(20 / var(--FONT_SIZE_ROOT) * 1rem);
+    padding: calc(var(--SPACING) * 6) calc(var(--SPACING) * 8);
+  }
+
+  .content {
+    padding: calc(var(--SPACING) * 6) calc(var(--SPACING) * 8);
+  }
+}

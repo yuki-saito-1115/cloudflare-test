@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "name": "XIA",
+      "path": "../"
+    }
+  ],
+
+  "settings": {
+    "biome.enabled": true,
+    "prettier.enable": false,
+    "markuplint.enable": false
+  }
+}

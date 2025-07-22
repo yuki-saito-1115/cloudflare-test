@@ -1,0 +1,27 @@
+---
+// Styles
+import styles from '@components/structures/Breadcrumb/Breadcrumb.module.css';
+---
+<nav class={styles.root} aria-label="パンくずリスト">
+  <div class={styles.outer}>
+    <div class={styles.inner}>
+      <ol class={styles.list}>
+        {
+          Object.entries(Astro.props).map(([label, url]) =>
+            <li
+              class={styles.item}
+            >
+              <a
+                class={styles.link}
+                aria-current={!url ? 'page' : undefined}
+                {...(url ? { href: url } : {})}
+              >
+                {url ? label : <b>{label}</b>}
+              </a>
+            </li>
+          )
+        }
+      </ol>
+    </div>
+  </div>
+</nav>
