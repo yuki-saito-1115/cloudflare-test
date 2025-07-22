@@ -15,6 +15,7 @@
     "check": "astro check",
     "preview": "astro preview",
     "astro": "astro",
+    "deply": "wrangler deploy dist",
     "lint": "biome check",
     "fix": "biome check --write",
     "prepare": "git config core.hooksPath .hooks && git lfs install"
@@ -34,7 +35,8 @@
     "@types/node": "^24.0.14",
     "mdast-util-directive": "^3.1.0",
     "remark-directive": "^4.0.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "wrangler": "^4.25.0"
   },
   "packageManager": "npm@10.9.2",
   "engines": {
