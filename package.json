@@ -1,9 +1,9 @@
 {
-  "name": "xia",
-  "version": "0.0.10",
-  "description": "X-Tech Intelligent Assemble",
+  "name": "cloudflare-test",
+  "version": "0.0.1",
+  "description": "cloudflare-test",
   "license": "MIT",
-  "author": "Mitsue-Links Co., Ltd. (X-Tech Division)",
+  "author": "yuki-saito",
   "type": "module",
   "repository": {
     "type": "git",
@@ -21,19 +21,22 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.3.0",
+    "@astrojs/mdx": "^4.3.1",
     "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.11.1",
+    "astro": "^5.12.1",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
     "@astrojs/cloudflare": "^12.6.0",
     "@astrojs/ts-plugin": "^1.10.4",
-    "@biomejs/biome": "2.1.1",
+    "@biomejs/biome": "2.1.2",
     "@cloudflare/kv-asset-handler": "^0.4.0",
     "@types/node": "^24.0.14",
     "typescript": "^5.8.3",
     "wrangler": "^4.25.0"
+  },
+  "optionalDependencies": {
+    "prettier": "^3.0.0"
   },
   "packageManager": "npm@10.9.2",
   "engines": {
