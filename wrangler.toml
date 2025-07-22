@@ -3,6 +3,3 @@ main = "worker/index.js"
 account_id = "58cced6ab218926c56894fa3e0f3d1e5"
 workers_dev = true
 compatibility_date = "2025-07-22"
-
-[site]
-bucket = "./dist"
