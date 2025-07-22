@@ -1,9 +1,9 @@
 {
-  "name": "xia",
-  "version": "0.0.10",
-  "description": "X-Tech Intelligent Assemble",
+  "name": "cloudflare-test",
+  "version": "0.0.1",
+  "description": "cloudflare-test",
   "license": "MIT",
-  "author": "Mitsue-Links Co., Ltd. (X-Tech Division)",
+  "author": "yuki-saito",
   "type": "module",
   "repository": {
     "type": "git",
