@@ -27,7 +27,6 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
-    "@astrojs/cloudflare": "^12.6.0",
     "@astrojs/ts-plugin": "^1.10.4",
     "@biomejs/biome": "2.1.2",
     "@cloudflare/kv-asset-handler": "^0.4.0",
