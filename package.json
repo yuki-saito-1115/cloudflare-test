@@ -15,7 +15,7 @@
     "check": "astro check",
     "preview": "astro preview",
     "astro": "astro",
-    "deply": "wrangler deploy dist",
+    "deploy": "wrangler deploy dist",
     "lint": "biome check",
     "fix": "biome check --write",
     "prepare": "git config core.hooksPath .hooks && git lfs install"
