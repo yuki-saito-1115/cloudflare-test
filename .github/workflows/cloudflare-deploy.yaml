@@ -6,11 +6,11 @@ on:
       - main
       - develop
       - 'feature/*'
-  pull_request:
-    branches:
-      - main
-      - develop
-      - 'feature/*'
+  # pull_request:
+  #   branches:
+  #     - main
+  #     - develop
+  #     - 'feature/*'
   repository_dispatch:
     types: [microcms_update] # microCMSからのトリガー名
   workflow_dispatch: # 手動トリガーも可
