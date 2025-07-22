@@ -7,3 +7,6 @@ compatibility_date = "2025-07-22"
 [[kv_namespaces]]
 binding = "__STATIC_CONTENT"
 id = "83183855419b4bb58625378c4dbf14d3"
+
+[site]
+bucket = "./dist"
