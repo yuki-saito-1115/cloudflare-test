@@ -1,12 +1,16 @@
+# 1. ダッシュボードのサイドバー「コンピューティング（Workers）」
+# 2. アプリケーションの名前をnameに、画面右下の「アカウント ID」をaccount_idに設定
 name = "wrangler-test"
-main = "worker/index.js"
 account_id = "58cced6ab218926c56894fa3e0f3d1e5"
+main = "worker/index.js"
 workers_dev = true
 compatibility_date = "2025-07-22"
 
+[site]
+bucket = "./dist"
+
+# 1. ダッシュボードのサイドバー「ストレージとデータベース」
+# 2. KVの「Name」をbindingに、「ID」をidに設定
 [[kv_namespaces]]
 binding = "__wrangler-test-workers_sites_assets"
 id = "83183855419b4bb58625378c4dbf14d3"
-
-[site]
-bucket = "./dist"
