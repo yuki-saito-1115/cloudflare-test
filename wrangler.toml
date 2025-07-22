@@ -1,12 +1,5 @@
 name = "wrangler-test"
-main = "worker/index.js"
+main = "dist/_worker.js/index.js"
 account_id = "58cced6ab218926c56894fa3e0f3d1e5"
 workers_dev = true
 compatibility_date = "2025-07-22"
-
-[[kv_namespaces]]
-binding = "__wrangler-test-workers_sites_assets"
-id = "83183855419b4bb58625378c4dbf14d3"
-
-[site]
-bucket = "./dist"

@@ -30,7 +30,6 @@
     "@astrojs/cloudflare": "^12.6.0",
     "@astrojs/ts-plugin": "^1.10.4",
     "@biomejs/biome": "2.1.1",
-    "@cloudflare/kv-asset-handler": "^0.4.0",
     "@types/node": "^24.0.14",
     "typescript": "^5.8.3",
     "wrangler": "^4.25.0"
