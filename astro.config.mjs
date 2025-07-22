@@ -21,7 +21,7 @@ export default defineConfig({
     enabled: false,
   },
 
-  output: 'server',
+  output: 'static',
   adapter: cloudflare(),
 
   /**

@@ -7,7 +7,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.mitsue.com/sdn/sandbox/saito-yuuki/xia.git"
+    "url": "https://github.com/yuki-saito-1115/cloudflare-test.git"
   },
   "scripts": {
     "dev": "astro dev",
@@ -17,8 +17,7 @@
     "astro": "astro",
     "deploy": "npx wrangler deploy",
     "lint": "biome check",
-    "fix": "biome check --write",
-    "prepare": "git config core.hooksPath .hooks && git lfs install"
+    "fix": "biome check --write"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
