@@ -1,10 +1,19 @@
-# .github/workflows/deploy.yml
-name: Deploy on microCMS webhook
+name: Cloudflare Workers Deploy
 
 on:
-  workflow_dispatch: # 手動トリガーも可
+  push:
+    branches:
+      - main
+      - develop
+      - 'feature/*'
+  pull_request:
+    branches:
+      - main
+      - develop
+      - 'feature/*'
   repository_dispatch:
     types: [microcms_update] # microCMSからのトリガー名
+  workflow_dispatch: # 手動トリガーも可
 
 jobs:
   deploy:
