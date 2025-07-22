@@ -1,0 +1,27 @@
+# .github/workflows/deploy.yml
+name: Deploy on microCMS webhook
+
+on:
+  workflow_dispatch: # 手動トリガーも可
+  repository_dispatch:
+    types: [microcms_trigger] # microCMSからのトリガー名
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.17.0
+
+      - name: Install wrangler
+        run: npm install -g wrangler
+
+      - name: Publish to Cloudflare
+        run: npm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
