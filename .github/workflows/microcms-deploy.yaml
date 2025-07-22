@@ -27,10 +27,10 @@ jobs:
         with:
           node-version: 22.17.0
 
-      - name: Install wrangler
-        run: npm install -g wrangler
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Publish to Cloudflare
+      - name: Deploy to Cloudflare
         run: npm run deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
