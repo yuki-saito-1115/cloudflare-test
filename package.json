@@ -36,7 +36,7 @@
     "wrangler": "^4.25.0"
   },
   "optionalDependencies": {
-    "prettier": "2.8.7"
+    "prettier": "^3.0.0"
   },
   "packageManager": "npm@10.9.2",
   "engines": {
