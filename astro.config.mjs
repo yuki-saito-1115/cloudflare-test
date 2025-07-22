@@ -1,10 +1,8 @@
 // @ts-check
 
-import mdx from '@astrojs/mdx';
+import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
-import remarkDirective from 'remark-directive';
-import remarkCustomDirectives from './src/plugins/remarkCustomDirectives';
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,19 +18,16 @@ export default defineConfig({
     open: '/',
   },
   devToolbar: {
-    enabled: false
+    enabled: false,
   },
+
+  output: 'server',
+  adapter: cloudflare(),
 
   /**
    * インテグレーション
    */
-  integrations: [
-    mdx({
-      remarkPlugins: [remarkDirective, remarkCustomDirectives],
-      extendMarkdownConfig: false,
-      gfm: true,
-    }),
-  ],
+  integrations: [],
 
   /**
    * Viteの設定
