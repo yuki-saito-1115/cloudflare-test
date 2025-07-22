@@ -4,7 +4,7 @@ name: Deploy on microCMS webhook
 on:
   workflow_dispatch: # 手動トリガーも可
   repository_dispatch:
-    types: [microcms_trigger] # microCMSからのトリガー名
+    types: [microcms_update] # microCMSからのトリガー名
 
 jobs:
   deploy:
