@@ -1,4 +1,4 @@
-name: Cloudflare Workers Deploy
+name: Deploy to Cloudflare Workers
 
 on:
   push:
@@ -12,28 +12,41 @@ on:
   #     - develop
   #     - 'feature/*'
   repository_dispatch:
-    types: [microcms_update] # microCMSからのトリガー名
+    types:
+      - microcms_update
   workflow_dispatch: # 手動トリガーも可
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: 📥 Checkout source code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: 🧱 Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 22.17.0
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: 🛠️ Build project
         run: npm run build
 
-      - name: Deploy to Cloudflare
-        run: npm run deploy
+      - name: 🏷️ Generate Worker name from branch
+        id: setname
+        run: |
+          BRANCH_NAME="${GITHUB_REF##*/}"
+
+          if [ "$BRANCH_NAME" = "main" ]; then
+            echo "WORKER_NAME=wrangler-test" >> $GITHUB_ENV
+          else
+            SAFE_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's#[^a-zA-Z0-9]#-#g')
+            echo "WORKER_NAME=${SAFE_BRANCH_NAME}-wrangler-test" >> $GITHUB_ENV
+          fi
+
+      - name: 🚚 Deploy to Cloudflare Workers
+        run: wrangler deploy --name ${{ env.WORKER_NAME }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
