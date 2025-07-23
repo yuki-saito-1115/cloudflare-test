@@ -1,3 +1,5 @@
+# 1. ダッシュボードのサイドバー「コンピューティング（Workers）」
+# 2. アプリケーションの名前をnameに、画面右下の「アカウント ID」をaccount_idに設定
 name = "wrangler-test"
 account_id = "58cced6ab218926c56894fa3e0f3d1e5"
 workers_dev = true
