@@ -16,7 +16,7 @@ env:
   # ビルドコマンド
   BUILD_COMMAND: npm run build
   # デプロイコマンド
-  DEPLOY_COMMAND: npm run deploy
+  DEPLOY_COMMAND: npx wrangler deploy
 
 # プロジェクト設定 ここまで ----------------------------------------------------
 
