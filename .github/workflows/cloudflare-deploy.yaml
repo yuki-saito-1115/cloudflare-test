@@ -1,6 +1,7 @@
 name: 🚀 Deploy to Cloudflare Workers
 run-name: ${{ github.event_name == 'repository_dispatch' && format('🤖 Deploy - Triggered by `{0}` webhook', github.event.action) || '🔧 Deploy - Manually triggered' }}
 
+
 # プロジェクト設定 ここから ----------------------------------------------------
 
 on:
@@ -9,6 +10,7 @@ on:
       # microcms の webhook 名を配列で指定
       - microcms-news
   workflow_dispatch: # 手動トリガー可
+
 
 env:
   # ビルドコマンド
@@ -19,8 +21,6 @@ env:
 # プロジェクト設定 ここまで ----------------------------------------------------
 
 
-
-# 以下、変更不要 ---------------------------------------------------------------
 jobs:
   deploy:
     runs-on: ubuntu-latest
