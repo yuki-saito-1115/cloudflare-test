@@ -1,5 +1,5 @@
 name: 🚀 Deploy to Cloudflare Workers
-run-name: ${{ github.event_name == 'repository_dispatch' && format('🤖 Deploy - Triggered by \`{0}\` webhook', github.event.action) || '🔧 Deploy - Manually triggered' }}
+run-name: ${{ github.event_name == 'repository_dispatch' && format('🤖 Deploy - Triggered by "{0}" webhook, github.event.action) || '🔧 Deploy - Manually triggered' }}
 
 # プロジェクト設定 ここから ----------------------------------------------------
 
