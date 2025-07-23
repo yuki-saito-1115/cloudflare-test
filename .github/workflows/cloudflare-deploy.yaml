@@ -1,5 +1,5 @@
 name: 🚀 Deploy to Cloudflare Workers
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: ${{ github.actor }} triggered ${{ github.event_name == 'workflow_dispatch' && '🖱️ Manual Deploy' || '🔄 microCMS Deploy' }}
 
 # プロジェクト設定 ここから ----------------------------------------------------
 on:
