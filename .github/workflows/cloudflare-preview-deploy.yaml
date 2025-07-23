@@ -38,18 +38,13 @@ jobs:
         run: ${{ env.BUILD_COMMAND }}
 
       - name: 🚚 Cloudflare Workers へデプロイ
-        run: |
-          ${{ env.DEPLOY_COMMAND }} -- --env preview --json | tee result.json
-          cat result.json
-          URL=$(cat result.json | jq -r '.assets[0].url')
-          echo "preview_url=$URL" >> $GITHUB_OUTPUT
+        run: ${{ env.DEPLOY_COMMAND }} -- --env preview
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-
 
       - name: 💬 PRにPreview URLをコメント
         uses: peter-evans/create-or-update-comment@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
-          body: "✅ Preview deployed to ${{ steps.deploy.outputs.preview_url }}"
+          body: "✅ Preview deployed to https://${{ env.PREVIEW_NAME }}.workers.dev"
