@@ -1,5 +1,5 @@
 name: 🚀 Deploy to Cloudflare Workers
-description: "microCMSコンテンツ更新時の自動デプロイ＆手動デプロイ用ワークフロー"
+run-name: ${{ github.actor }} is learning GitHub Actions
 
 # プロジェクト設定 ここから ----------------------------------------------------
 on:
