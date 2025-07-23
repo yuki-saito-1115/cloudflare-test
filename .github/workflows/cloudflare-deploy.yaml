@@ -38,6 +38,8 @@ jobs:
         id: setname
         run: |
           BRANCH_NAME="${GITHUB_REF##*/}"
+          echo "Branch name is: $BRANCH_NAME"
+
 
           if [ "$BRANCH_NAME" = "main" ]; then
             echo "WORKER_NAME=wrangler-test" >> $GITHUB_ENV
