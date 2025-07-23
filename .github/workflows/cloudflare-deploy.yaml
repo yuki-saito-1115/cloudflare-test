@@ -35,33 +35,33 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout source code
+      - name: 📥 ソースコードのチェックアウト
         uses: actions/checkout@v3
 
-      - name: 🧱 Set up Node.js
+      - name: 🧱 Node.js のセットアップ
         uses: actions/setup-node@v3
         with:
           node-version: 22.17.0
 
-      - name: 📦 Install dependencies
+      - name: 📦 依存パッケージのインストール
         run: npm ci
 
-      - name: 🛠️ Build project
+      - name: 🛠️ プロジェクトのビルド
         run: ${{ env.BUILD_COMMAND }}
 
-      - name: 🏷️ Generate Worker name from branch
+      - name: 🏷️ Worker 識別子の生成
         id: setname
         run: |
-          STAGE_NAME="${GITHUB_REF##*/}"
+          WORKER_NAME="${GITHUB_REF##*/}"
 
-          if [ "$STAGE_NAME" = "main" ]; then
-            echo "STAGE_NAME=${APP_NAME}" >> $GITHUB_ENV
+          if [ "$WORKER_NAME" = "main" ]; then
+            echo "WORKER_NAME=${APP_NAME}" >> $GITHUB_ENV
           else
-            SAFE_STAGE_NAME=$(echo "$STAGE_NAME" | sed 's#[^a-zA-Z0-9]#-#g')
-            echo "STAGE_NAME=${SAFE_STAGE_NAME}-${APP_NAME}" >> $GITHUB_ENV
+            SAFE_WORKER_NAME=$(echo "$WORKER_NAME" | sed 's#[^a-zA-Z0-9]#-#g')
+            echo "WORKER_NAME=${SAFE_WORKER_NAME}-${APP_NAME}" >> $GITHUB_ENV
           fi
 
-      - name: 🚚 Deploy to Cloudflare Workers
-        run: ${{ env.DEPLOY_COMMAND }} --name $STAGE_NAME
+      - name: 🚚 Cloudflare Workers へデプロイ
+        run: ${{ env.DEPLOY_COMMAND }} -- --name $WORKER_NAME
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
