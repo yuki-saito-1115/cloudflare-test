@@ -35,9 +35,9 @@ jobs:
         run: npm ci
 
       - name: 🛠️ プロジェクトのビルド
-        run: ${{ vars.BUILD_COMMAND }}
+        run: ${{ env.BUILD_COMMAND }}
 
       - name: 🚚 Cloudflare Workers へデプロイ
-        run: ${{ vars.DEPLOY_COMMAND }} -- --env preview
+        run: ${{ env.DEPLOY_COMMAND }} -- --env preview
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
