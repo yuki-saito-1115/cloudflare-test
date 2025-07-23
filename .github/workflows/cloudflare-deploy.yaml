@@ -1,7 +1,8 @@
 name: 🚀 Deploy to Cloudflare Workers
-run-name: ${{ github.event_name == 'repository_dispatch' && format('🤖 Auto Deploy from microCMS Webhook({0}).', github.event.action) || '🙋 Manual Deploy' }}
+run-name: ${{ github.event_name == 'repository_dispatch' && format('🤖 Auto Deploy from microCMS Webhook({0}).', github.event.action) || '🔧 Manual Deploy' }}
 
 # プロジェクト設定 ここから ----------------------------------------------------
+
 on:
   repository_dispatch:
     types:
