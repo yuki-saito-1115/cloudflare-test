@@ -15,7 +15,6 @@
     "check": "astro check",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "npx wrangler deploy",
     "lint": "biome check",
     "fix": "biome check --write"
   },
