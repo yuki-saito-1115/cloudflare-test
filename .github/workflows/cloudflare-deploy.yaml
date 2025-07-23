@@ -1,5 +1,6 @@
 name: Deploy to Cloudflare Workers
 
+# プロジェクト設定 ここから ----------------------------------------------------
 on:
   push:
     branches:
@@ -13,9 +14,23 @@ on:
   #     - 'feature/*'
   repository_dispatch:
     types:
+      # microcms の webhook 名を配列で指定
       - microcms_update
-  workflow_dispatch: # 手動トリガーも可
+  workflow_dispatch: # 手動トリガー可
 
+env:
+  # Cloudflare Workers のアプリケーション名
+  APP_NAME: wrangler-test
+  # ビルドコマンド
+  BUILD_COMMAND: npm run build
+  # デプロイコマンド
+  DEPLOY_COMMAND: npm run deploy
+
+# プロジェクト設定 ここまで ----------------------------------------------------
+
+
+
+# 以下、変更不要 ---------------------------------------------------------------
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -32,23 +47,21 @@ jobs:
         run: npm ci
 
       - name: 🛠️ Build project
-        run: npm run build
+        run: ${{ env.BUILD_COMMAND }}
 
       - name: 🏷️ Generate Worker name from branch
         id: setname
         run: |
-          BRANCH_NAME="${GITHUB_REF##*/}"
-          echo "Branch name is: $BRANCH_NAME"
+          STAGE_NAME="${GITHUB_REF##*/}"
 
-
-          if [ "$BRANCH_NAME" = "main" ]; then
-            echo "WORKER_NAME=wrangler-test" >> $GITHUB_ENV
+          if [ "$STAGE_NAME" = "main" ]; then
+            echo "STAGE_NAME=${APP_NAME}" >> $GITHUB_ENV
           else
-            SAFE_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's#[^a-zA-Z0-9]#-#g')
-            echo "WORKER_NAME=${SAFE_BRANCH_NAME}-wrangler-test" >> $GITHUB_ENV
+            SAFE_STAGE_NAME=$(echo "$STAGE_NAME" | sed 's#[^a-zA-Z0-9]#-#g')
+            echo "STAGE_NAME=${SAFE_STAGE_NAME}-${APP_NAME}" >> $GITHUB_ENV
           fi
 
       - name: 🚚 Deploy to Cloudflare Workers
-        run: npm run deploy -- --name ${{ env.WORKER_NAME }}
+        run: ${{ env.DEPLOY_COMMAND }} --name $STAGE_NAME
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
