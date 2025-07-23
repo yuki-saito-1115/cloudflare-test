@@ -2,16 +2,6 @@ name: Deploy to Cloudflare Workers
 
 # プロジェクト設定 ここから ----------------------------------------------------
 on:
-  push:
-    branches:
-      - main
-      - develop
-      - 'feature/*'
-  # pull_request:
-  #   branches:
-  #     - main
-  #     - develop
-  #     - 'feature/*'
   repository_dispatch:
     types:
       # microcms の webhook 名を配列で指定
@@ -49,19 +39,7 @@ jobs:
       - name: 🛠️ プロジェクトのビルド
         run: ${{ env.BUILD_COMMAND }}
 
-      - name: 🏷️ Worker 識別子の生成
-        id: setname
-        run: |
-          WORKER_NAME="${GITHUB_REF##*/}"
-
-          if [ "$WORKER_NAME" = "main" ]; then
-            echo "WORKER_NAME=${APP_NAME}" >> $GITHUB_ENV
-          else
-            SAFE_WORKER_NAME=$(echo "$WORKER_NAME" | sed 's#[^a-zA-Z0-9]#-#g')
-            echo "WORKER_NAME=${SAFE_WORKER_NAME}-${APP_NAME}" >> $GITHUB_ENV
-          fi
-
       - name: 🚚 Cloudflare Workers へデプロイ
-        run: ${{ env.DEPLOY_COMMAND }} -- --name $WORKER_NAME
+        run: ${{ env.DEPLOY_COMMAND }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
