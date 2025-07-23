@@ -38,7 +38,10 @@ jobs:
         run: ${{ env.BUILD_COMMAND }}
 
       - name: 🚚 Cloudflare Workers へデプロイ
-        run: ${{ env.DEPLOY_COMMAND }} -- --env preview
+        run: ${{ env.DEPLOY_COMMAND }} -- --env preview --json | tee result.json
+        cat result.json
+        URL=$(cat result.json | jq -r '.assets[0].url')
+        echo "preview_url=$URL" >> $GITHUB_OUTPUT
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
