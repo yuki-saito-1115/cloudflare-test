@@ -11,8 +11,6 @@ on:
   workflow_dispatch: # 手動トリガー可
 
 env:
-  # Cloudflare Workers のアプリケーション名
-  APP_NAME: wrangler-test
   # ビルドコマンド
   BUILD_COMMAND: npm run build
   # デプロイコマンド
