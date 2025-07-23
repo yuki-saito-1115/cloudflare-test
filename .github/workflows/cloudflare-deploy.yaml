@@ -7,7 +7,7 @@ on:
   repository_dispatch:
     types:
       # microcms の webhook 名を配列で指定
-      - microcms_update
+      - microcms-news
   workflow_dispatch: # 手動トリガー可
 
 env:
