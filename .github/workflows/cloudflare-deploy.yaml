@@ -47,6 +47,6 @@ jobs:
           fi
 
       - name: 🚚 Deploy to Cloudflare Workers
-        run: wrangler deploy --name ${{ env.WORKER_NAME }}
+        run: npm run deploy -- --name ${{ env.WORKER_NAME }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
