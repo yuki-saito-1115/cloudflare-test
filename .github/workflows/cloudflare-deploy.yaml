@@ -33,42 +33,10 @@ jobs:
         with:
           node-version: 22.17.0
 
-      - name: 🗃️ npm キャッシュの復元
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: npm-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            npm-cache-${{ runner.os }}-
-
-      - name: 🗃️ node_modules キャッシュの復元
-        id: node-cache
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            node-modules-
-
       - name: 📦 依存パッケージのインストール
-        if: steps.node-cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: 🗃️ ビルドキャッシュの復元
-        id: build-cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            dist
-            .astro
-            .cache
-            node_modules/.cache
-          key: build-${{ hashFiles('src/**/*', 'package-lock.json') }}
-          restore-keys: |
-            build-
-
       - name: 🛠️ プロジェクトのビルド
-        if: steps.build-cache.outputs.cache-hit != 'true'
         run: ${{ env.BUILD_COMMAND }}
 
       - name: 🚚 Cloudflare Workers へデプロイ
